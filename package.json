@@ -1,11 +1,14 @@
 {
   "name": "bumpy",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Filebase database for Node platforms",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "keywords": [
     "bumpy",
@@ -19,5 +22,9 @@
     "name": "Ogabek Yuldoshev",
     "url": "https://github.com/OgabekYuldoshev"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
 }
