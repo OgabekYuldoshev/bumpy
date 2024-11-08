@@ -1,1 +1,1 @@
-export const DEFAULT_NAME = 'bumpydb'
+export const DEFAULT_NAME = 'bumpy'
