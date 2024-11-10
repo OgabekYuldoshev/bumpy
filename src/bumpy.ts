@@ -6,9 +6,9 @@ import { z } from "zod";
 import sift from "sift";
 import { firstBy } from "thenby";
 import type { BumpyOptions, Collection, CollectionOperations, Data, FindOptions, InferSchema, Operations, SortOptions, WithBaseField } from "./types";
-import { generateCuid } from "./utils";
+import { baseFieldSchema, generateCuid } from "./utils";
 
-export class Bumpy<
+class Bumpy<
   TName extends string,
   TSchema extends z.ZodSchema,
   TCollection extends Collection<TName, TSchema> = Collection<TName, TSchema>> {
@@ -126,15 +126,11 @@ export class Bumpy<
         query,
         options: FindOptions = {}
       ) => {
-        const { sort, limit, skip = 0 } = options;
+        const { sort } = options;
         let items = Object.values(this.data[collection.name] || {}).filter(sift(query));
 
         if (sort) {
           items = this.applySorting(items, sort);
-        }
-
-        if (skip || limit) {
-          items = items.slice(skip, limit ? skip + limit : undefined);
         }
 
         return items;
@@ -155,12 +151,15 @@ export class Bumpy<
           updatedAt: new Date().toISOString(),
         };
 
-        const validated = collection.schema.parse(updated);
-        items[item.id as string] = validated;
+        const validatedData = await baseFieldSchema.merge(collection.schema as any).parseAsync(updated) as WithBaseField<InferSchema<S>>
+
+        items[item.id as string] = validatedData
+
         this.data[collection.name] = items;
+
         await this.saveToFile();
 
-        return validated;
+        return updated;
       },
 
       updateMany: async (

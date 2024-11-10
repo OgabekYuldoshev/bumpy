@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export function generateCuid(): string {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
     // Generate timestamp part
@@ -9,3 +11,10 @@ export function generateCuid(): string {
     // Combine the parts into a final cuid-like identifier
     return `c${timestamp}${randomPart}`;
 }
+
+
+export const baseFieldSchema = z.object({
+    id: z.string().cuid(),
+    createdAt: z.coerce.date(),
+    updatedAt: z.coerce.date(),
+})

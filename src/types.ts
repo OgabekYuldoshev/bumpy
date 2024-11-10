@@ -38,10 +38,7 @@ export type SortOptions = {
 
 export type FindOptions = {
     sort?: SortOptions;
-    limit?: number;
-    skip?: number;
 }
-
 
 export type Operations<S extends z.ZodSchema> = {
     create: (data: InferSchema<S>) => Promise<WithBaseField<InferSchema<S>>>;
