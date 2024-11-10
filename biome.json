@@ -19,6 +19,12 @@
   "linter": {
     "enabled": true,
     "rules": {
+      "suspicious": {
+        "noExplicitAny": "off"
+      },
+      "complexity": {
+        "noBannedTypes": "off"
+      },
       "style": {
         "useNodejsImportProtocol": "off",
         "useConst": "off"

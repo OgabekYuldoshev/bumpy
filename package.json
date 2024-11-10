@@ -1,7 +1,7 @@
 {
   "name": "bumpy",
   "version": "0.0.0",
-  "description": "Filebase database for Node platforms",
+  "description": "Filebase Database for Node platforms",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -41,8 +41,8 @@
   "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@changesets/cli": "^2.27.9",
     "@types/node": "^22.9.0",
-    "changesets": "^1.0.2",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^2.1.4",
