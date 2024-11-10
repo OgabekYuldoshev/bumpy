@@ -38,7 +38,7 @@ class Bumpy<
 	 * Creates an instance of Bumpy database
 	 * @param {BumpyOptions<TCollection>} options - Configuration options for the database
 	 */
-	constructor(private options: BumpyOptions<TCollection>) {}
+	constructor(private options: BumpyOptions<TCollection>) { }
 
 	/**
 	 * Initializes the database by creating necessary directories and files

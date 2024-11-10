@@ -3,9 +3,9 @@ Bumpy is a lightweight, schema-validated document database for Node.js applicati
 ## Installation
 
 ```bash
-npm install bumpy-fs
+npm install bumpy-fs zod
 # or
-yarn add bumpy-fs
+yarn add bumpy-fs zod
 ```
 
 ## Basic Usage
