@@ -13,6 +13,7 @@ import type {
 	FindOptions,
 	InferSchema,
 	Operations,
+	SnakeCase,
 	SortOptions,
 	WithBaseField,
 } from "./types";
@@ -316,7 +317,7 @@ export function createBumpy<
  * });
  */
 export function createCollection<N extends string, S extends z.ZodSchema>(
-	options: Collection<N, S>,
-): Collection<N, S> {
+	options: Collection<SnakeCase<N>, S>,
+): Collection<SnakeCase<N>, S> {
 	return Object.freeze(options);
 }

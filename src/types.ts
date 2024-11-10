@@ -5,6 +5,11 @@ export type Prettify<T> = {
 	[K in keyof T]: T[K];
 } & {};
 
+export type SnakeCase<T extends string> =
+	T extends `${infer First}${infer Rest}`
+	? `${First extends Lowercase<First> ? '' : '_'}${Lowercase<First>}${SnakeCase<Rest>}`
+	: T;
+
 export type InferSchema<T extends z.ZodSchema> = z.infer<T>;
 
 export type Collection<Name extends string, Schema extends z.ZodSchema> = {
@@ -34,8 +39,8 @@ export type Data<T extends Collection<string, z.ZodSchema>> = Prettify<
 
 export type CollectionOperations<T extends Collection<string, z.ZodSchema>> = {
 	[K in T["name"]]: T extends Collection<K, infer S extends z.ZodSchema>
-		? Operations<S>
-		: never;
+	? Operations<S>
+	: never;
 };
 
 export type SortOptions = {
